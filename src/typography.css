@@ -1,0 +1,11 @@
+.root {
+  .title {
+    font-size: 2em;
+    color: map(colors, primary, xdark);
+  }
+
+  .subtitle {
+    font-size: 1.5em;
+    color: map(colors, secondary, dark);
+  }
+}

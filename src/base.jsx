@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import getData from './Scripts/getData';
 import LoadScreen from './Components/LoadScreen';
-import Graphic from './Components/Graphic';
+import Slides from './Components/Slides';
 
 import s from './base.css';
 
@@ -13,7 +13,7 @@ export default class Base extends Component {
     super();
 
     this.state = {
-      data: [],
+      slides: [],
       loading: true
     };
 
@@ -21,7 +21,7 @@ export default class Base extends Component {
   }
 
   setData(data) {
-    this.setState({ data: data, loading: false });
+    this.setState({ slides: data, loading: false });
   }
 
   componentWillMount() {
@@ -29,12 +29,11 @@ export default class Base extends Component {
   }
 
   render(props, state) {
-    const { loading, data } = state;
+    const { loading, slides } = state;
 
     let content = (loading) ? (<LoadScreen />) : (
       <div className={s.inner}>
-        <h2 className={s.title}>Hello eindpresentatie_lasillavacia!</h2>
-        <Graphic data={data} />
+        <Slides slides={slides} />
       </div>
     );
 

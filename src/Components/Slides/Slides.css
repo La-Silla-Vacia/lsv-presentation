@@ -1,0 +1,59 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  transition: 2s;
+  min-height: 36.25em;
+  border-top: 1px solid map(colors, neutral, lightest);
+}
+
+.full {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .slide {
+    font-size: calc(1em + 1vw);
+    padding: 2em;
+  }
+}
+
+.button {
+  position: absolute;
+  border: 0;
+  background-color: transparent;
+  width: 20%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  &:last-child {
+    left: 20%;
+    width: 80%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    border: 1px solid map(colors, primary, base);
+  }
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  background-color: map(colors, primary, base);
+  transition: width .2s;
+}
