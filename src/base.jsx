@@ -1,5 +1,8 @@
 import { h, render, Component } from 'preact';
+import markdownIt from 'markdown-it';
 import cn from 'classnames';
+
+const md = new markdownIt();
 
 import getData from './Scripts/getData';
 import LoadScreen from './Components/LoadScreen';
@@ -20,8 +23,23 @@ export default class Base extends Component {
     this.setData = this.setData.bind(this);
   }
 
-  setData(data) {
+  setData(rawData) {
+    const data = this.formatData(rawData);
     this.setState({ slides: data, loading: false });
+  }
+
+  formatData(data) {
+    return data.map((rawItem) => {
+      return {
+        id: rawItem.id,
+        title: rawItem.title,
+        subtitle: rawItem.subtitle,
+        content: (rawItem.content) ? md.render(rawItem.content) : '',
+        image: rawItem.image,
+        backgroundImage: rawItem.bg_image,
+        type: rawItem.type
+      }
+    });
   }
 
   componentWillMount() {

@@ -4,13 +4,14 @@ import s from './Slides.css';
 import t from '../../typography.css';
 
 import Intro from '../Intro';
+import Statistics from '../Statistics';
 
 export default class Slides extends Component {
   constructor() {
     super();
 
     this.state = {
-      current: 0,
+      current: 4,
       full: false
     };
 
@@ -29,15 +30,21 @@ export default class Slides extends Component {
 
     const currentSlide = slides[current];
     if (!currentSlide) return;
+    currentSlide.className = s.slide;
     switch (currentSlide.type) {
       case 'intro':
         return (
-          <Intro className={s.slide} {...currentSlide} />
+          <Intro {...currentSlide} />
+        );
+        break;
+      case 'statistics':
+        return (
+          <Statistics {...currentSlide} />
         );
         break;
       default:
         return (
-          <div className={s.slide}>{currentSlide.title}</div>
+          <div>{currentSlide.title}</div>
         )
     }
   }
@@ -75,8 +82,8 @@ export default class Slides extends Component {
       <div className={cn(s.container, { [s.full]: full }, t.root)}>
         {slide}
         {/*<div>*/}
-          {/*<button className={s.button} onClick={this.handlePrev} />*/}
-          {/*<button className={s.button} onClick={this.handleNext} />*/}
+        {/*<button className={s.button} onClick={this.handlePrev} />*/}
+        {/*<button className={s.button} onClick={this.handleNext} />*/}
         {/*</div>*/}
         <div className={s.indicator} style={{ width: `${percentage}%` }} />
       </div>
