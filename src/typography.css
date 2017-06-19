@@ -8,4 +8,11 @@
     font-size: 1.5em;
     color: map(colors, secondary, dark);
   }
+
+  .content {
+    ul {
+      padding: 0;
+      list-style: dash inside;
+    }
+  }
 }

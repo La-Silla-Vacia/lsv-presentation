@@ -3,6 +3,9 @@ import cn from 'classnames';
 import s from './Slides.css';
 import t from '../../typography.css';
 
+let socket;
+
+import Slide from '../Slide';
 import Intro from '../Intro';
 import Statistics from '../Statistics';
 
@@ -11,7 +14,7 @@ export default class Slides extends Component {
     super();
 
     this.state = {
-      current: 4,
+      current: 0,
       full: false
     };
 
@@ -22,6 +25,17 @@ export default class Slides extends Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeys);
+
+    if (io) {
+      socket = io();
+      this.listenToSocket();
+    }
+  }
+
+  listenToSocket() {
+    socket.on('change', (current) => {
+      this.setState({ current });
+    });
   }
 
   getSlide() {
@@ -44,19 +58,26 @@ export default class Slides extends Component {
         break;
       default:
         return (
-          <div>{currentSlide.title}</div>
+          <Slide {...currentSlide} />
         )
     }
   }
 
   handleKeys(e) {
     e.preventDefault();
-    const { code } = e;
+    const code = e.code;
+    const { current } = this.state;
+    const { slides } = this.props;
+    // console.log(code);
     if (code === 'ArrowLeft') {
       this.handlePrev();
+      socket.emit('change', (current > 0) ? current - 1 : 0);
     } else if (code === 'ArrowRight') {
       this.handleNext();
+      socket.emit('change', (current < slides.length - 1) ? current + 1 : current);
     } else if (code === 'Escape') {
+      this.setState({ full: false });
+    } else if (code === 'KeyF') {
       this.setState({ full: !this.state.full });
     }
   }

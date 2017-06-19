@@ -2,14 +2,20 @@
   "name": "eindpresentatie_lasillavacia",
   "version": "0.0.0",
   "description": "",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/La-Silla-Vacia/eindpresentatie_lasillavacia.git"
   },
   "dependencies": {
+    "express": "^4.15.3",
+    "http": "^0.0.0",
     "lsv-components": "latest",
     "lsv-interactive": "latest",
     "markdown-it": "^8.3.1",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7",
+    "socket.io": "^2.0.3",
     "whatwg-fetch": "latest"
   },
   "scripts": {

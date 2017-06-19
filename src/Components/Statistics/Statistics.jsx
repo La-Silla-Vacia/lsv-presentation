@@ -5,7 +5,7 @@ import g from '../../grid.css';
 import t from '../../typography.css';
 
 
-export default class Intro extends Component {
+export default class Statistics extends Component {
   constructor() {
     super();
 
