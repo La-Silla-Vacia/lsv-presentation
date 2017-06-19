@@ -110,7 +110,7 @@ export default class Slides extends Component {
     const slide = this.getSlide();
 
     const currentSlide = slides[current];
-    const black = (currentSlide.backgroundVideo) ? true : false;
+    const black = !!(currentSlide.backgroundVideo);
     return (
       <div className={cn(s.container, { [s.full]: full }, t.root, { [s.black]: black })}>
         {slide}

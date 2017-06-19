@@ -60,7 +60,7 @@ export default class Slide extends Component {
     const { title, subtitle, image, content, className, backgroundVideo, backgroundImage } = props;
     const img = (image) ? this.getImage() : false;
     const video = (backgroundVideo) ? this.getVideo() : false;
-    const fixed = (backgroundVideo || backgroundImage);
+    const fixed = false;
 
     return (
       <div className={cn(className, s.container, { [s.hasVideo]: video }, { [t.video]: video })}>
