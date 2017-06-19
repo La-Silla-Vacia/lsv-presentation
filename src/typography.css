@@ -1,7 +1,18 @@
 .root {
+  .title,
+  .subtitle {
+    z-index: 5;
+    position: relative;
+    transition: .4s;
+  }
+
   .title {
     font-size: 2em;
     color: map(colors, primary, xdark);
+
+    .subtitle {
+      font-size: .6em;
+    }
 
     &.fixed {
       position: absolute;
@@ -12,6 +23,11 @@
   .subtitle {
     font-size: 1.5em;
     color: map(colors, secondary, dark);
+
+    &.fixed {
+      position: absolute;
+      top: 4em;
+    }
   }
 
   .content {
@@ -25,5 +41,17 @@
         }
       }
     }
+  }
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.video {
+  .title,
+  .subtitle {
+    color: #fff;
+    left: 3rem;
   }
 }

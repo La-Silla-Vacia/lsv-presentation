@@ -2,17 +2,13 @@
   width: 100%;
 }
 
-.image {
-  width: 15em;
-}
-
-.video {
+.frame {
   position: absolute;
-  top: 0;
+  top: 5.5em;
   left: 0;
   right: 0;
   bottom: 0;
+  border: 0;
   width: 100%;
-  height: 100%;
-  cursor: pointer;
+  height: calc(100% - 5.5em);
 }

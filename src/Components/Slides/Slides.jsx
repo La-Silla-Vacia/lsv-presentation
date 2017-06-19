@@ -8,6 +8,7 @@ let socket;
 import Slide from '../Slide';
 import Intro from '../Intro';
 import Statistics from '../Statistics';
+import Iframe from '../Iframe';
 
 export default class Slides extends Component {
   constructor() {
@@ -60,6 +61,11 @@ export default class Slides extends Component {
           <Statistics {...currentSlide} />
         );
         break;
+      case 'iframe':
+        return (
+          <Iframe {...currentSlide} />
+        );
+        break;
       default:
         return (
           <Slide {...currentSlide} />
@@ -103,8 +109,10 @@ export default class Slides extends Component {
     const percentage = (current + 1) * 100 / slides.length;
     const slide = this.getSlide();
 
+    const currentSlide = slides[current];
+    const black = (currentSlide.backgroundVideo) ? true : false;
     return (
-      <div className={cn(s.container, { [s.full]: full }, t.root)}>
+      <div className={cn(s.container, { [s.full]: full }, t.root, { [s.black]: black })}>
         {slide}
         {/*<div>*/}
         {/*<button className={s.button} onClick={this.handlePrev} />*/}
