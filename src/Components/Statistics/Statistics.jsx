@@ -4,41 +4,56 @@ import s from './Statistics.css';
 import g from '../../grid.css';
 import t from '../../typography.css';
 
-
 export default class Statistics extends Component {
   constructor() {
     super();
 
     this.state = {
-      meters: [
-        {
-          name: "Development",
-          amount: `${(91.5 + 104 + 74.75 + 90.5 + 55)} hours`
-        },
-        {
-          name: "LaSillaVacia.com",
-          amount: `${(4 + 11.75 + 7.3 + 4.3 + 1.45)} hours`
-        },
-        {
-          name: "GitHub",
-          amount: '38 repositories'
-        },
-        {
-          name: "Spreadsheets",
-          amount: 40
-        }
-      ]
+      show: false,
+      meters: []
     }
   }
 
+  componentDidMount() {
+    this.formatData();
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.formatData(newProps);
+  }
+
+  formatData(newProps) {
+    const props = (newProps) ? newProps : this.props;
+    const data = props.data.split("\n");
+    const meters = data.map((meter) => {
+      const item = meter.split(':');
+      return {
+        name: item[0],
+        amount: Number(item[1]),
+        description: item[2].replace(/,/g, '<br />')
+      }
+    });
+    this.setState({ meters });
+    setTimeout(() => this.setState({ show: true }), 100);
+  }
+
   getMeters() {
-    const { meters } = this.state;
+    const { meters, show } = this.state;
+    let total = 0;
+    for (let meter of meters) {
+      total += meter.amount;
+    }
+
     return meters.map((meter) => {
-      const { name, amount } = meter;
+      const { name, amount, description } = meter;
+      const percentage = amount * 100 / total;
       return (
         <div className={s.meter}>
-          <h4>{name}</h4>
-          {amount}
+          <div className={s.description} style={{ bottom: `${percentage}%` }}>
+            <h4>{name}</h4>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          </div>
+          <div className={cn(s.bar, { [s.show]: show })} style={{ height: `${percentage}%` }} />
         </div>
       )
     });
@@ -50,9 +65,9 @@ export default class Statistics extends Component {
 
     return (
       <div className={cn(className, s.container)}>
-        <h2 className={t.title}>{title}</h2>
+        <h2 className={cn(t.title, t.fixed)}>{title}</h2>
         <h3 className={t.subtitle}>{content}</h3>
-        <div className={g.row}>
+        <div className={cn(g.row, s.meters)}>
           {meters}
         </div>
       </div>

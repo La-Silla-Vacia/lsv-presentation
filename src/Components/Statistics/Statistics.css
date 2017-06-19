@@ -5,3 +5,62 @@
 .image {
   width: 15em;
 }
+
+.meters {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 20%;
+}
+
+.meter {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+
+  &:first-child .bar {
+    background-color: map(colors, productos, opinion);
+  }
+
+  &:nth-child(2) .bar {
+    background-color: #FC8E00;
+  }
+
+  &:nth-child(3) .bar {
+    background-color: map(colors, primary, base);
+  }
+
+  &:nth-child(4) .bar {
+    background-color: #0f9d58;
+  }
+
+  &:nth-child(5) .bar {
+    background-color: map(colors, productos, santander);
+  }
+}
+
+.bar {
+  background-color: map(colors, primary, base);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: 1s;
+}
+
+.show {
+  transform: scaleY(1);
+}
+
+.description {
+  position: absolute;
+  z-index: 1;
+  padding: .5em;
+  transition: 1s;
+
+  h4 {
+    margin-bottom: 0.2em;
+  }
+}

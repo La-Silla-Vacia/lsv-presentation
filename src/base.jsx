@@ -37,7 +37,8 @@ export default class Base extends Component {
         content: (rawItem.content) ? md.render(rawItem.content) : '',
         image: rawItem.image,
         backgroundImage: rawItem.bg_image,
-        type: rawItem.type
+        type: rawItem.type,
+        data: rawItem.data
       }
     });
   }

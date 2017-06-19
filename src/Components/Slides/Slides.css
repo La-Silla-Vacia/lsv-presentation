@@ -56,4 +56,5 @@
   height: 0.25em;
   background-color: map(colors, primary, base);
   transition: width .2s;
+  box-shadow: 0 -0.05em 0.5em rgba(0,0,0,.2);
 }

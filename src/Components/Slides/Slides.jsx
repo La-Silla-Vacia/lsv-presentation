@@ -15,7 +15,7 @@ export default class Slides extends Component {
 
     this.state = {
       current: 0,
-      full: false
+      full: false,
     };
 
     this.handleKeys = this.handleKeys.bind(this);
@@ -25,6 +25,10 @@ export default class Slides extends Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeys);
+
+    if (window.location.hash) {
+      this.setState({ current: window.location.hash.replace('#', '') });
+    }
 
     if (io) {
       socket = io();
@@ -64,17 +68,17 @@ export default class Slides extends Component {
   }
 
   handleKeys(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const code = e.code;
     const { current } = this.state;
     const { slides } = this.props;
     // console.log(code);
     if (code === 'ArrowLeft') {
       this.handlePrev();
-      socket.emit('change', (current > 0) ? current - 1 : 0);
+      if (socket) socket.emit('change', (current > 0) ? current - 1 : 0);
     } else if (code === 'ArrowRight') {
       this.handleNext();
-      socket.emit('change', (current < slides.length - 1) ? current + 1 : current);
+      if (socket) socket.emit('change', (current < slides.length - 1) ? current + 1 : current);
     } else if (code === 'Escape') {
       this.setState({ full: false });
     } else if (code === 'KeyF') {

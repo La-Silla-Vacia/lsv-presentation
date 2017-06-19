@@ -2,6 +2,11 @@
   .title {
     font-size: 2em;
     color: map(colors, primary, xdark);
+
+    &.fixed {
+      position: absolute;
+      top: 1em;
+    }
   }
 
   .subtitle {
@@ -12,7 +17,13 @@
   .content {
     ul {
       padding: 0;
-      list-style: dash inside;
+      list-style: none;
+
+      li {
+        &::before {
+          content: '- ';
+        }
+      }
     }
   }
 }
