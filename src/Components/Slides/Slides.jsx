@@ -78,16 +78,19 @@ export default class Slides extends Component {
     const code = e.code;
     const { current } = this.state;
     const { slides } = this.props;
-    // console.log(code);
     if (code === 'ArrowLeft') {
+      e.preventDefault();
       this.handlePrev();
       if (socket) socket.emit('change', (current > 0) ? current - 1 : 0);
-    } else if (code === 'ArrowRight') {
+    } else if (code === 'ArrowRight' || code === 'Space') {
+      e.preventDefault();
       this.handleNext();
       if (socket) socket.emit('change', (current < slides.length - 1) ? current + 1 : current);
     } else if (code === 'Escape') {
+      e.preventDefault();
       this.setState({ full: false });
     } else if (code === 'KeyF') {
+      e.preventDefault();
       this.setState({ full: !this.state.full });
     }
   }

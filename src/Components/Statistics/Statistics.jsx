@@ -27,6 +27,7 @@ export default class Statistics extends Component {
     const data = props.data.split("\n");
     const meters = data.map((meter) => {
       const item = meter.split(':');
+      console.log(item);
       return {
         name: item[0],
         amount: Number(item[1]),
@@ -41,16 +42,19 @@ export default class Statistics extends Component {
     const { meters, show } = this.state;
     let total = 0;
     for (let meter of meters) {
-      total += meter.amount;
+      if (meter.amount > total) total = meter.amount;
     }
+
+    const compact = (meters.length > 10);
 
     return meters.map((meter) => {
       const { name, amount, description } = meter;
       const percentage = amount * 100 / total;
+      const style = (compact) ? false : {bottom: `${percentage}%`};
       return (
         <div className={s.meter}>
-          <div className={s.description} style={{ bottom: `${percentage}%` }}>
-            <h4>{name}</h4>
+          <div className={cn(s.description, { [s.compact]: compact })} style={style}>
+            <h4 className={cn(s.title)}>{name}</h4>
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
           <div className={cn(s.bar, { [s.show]: show })} style={{ height: `${percentage}%` }} />

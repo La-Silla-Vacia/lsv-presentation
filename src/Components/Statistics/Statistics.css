@@ -11,7 +11,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  top: 20%;
+  top: 10em;
 }
 
 .meter {
@@ -23,20 +23,43 @@
     background-color: map(colors, productos, opinion);
   }
 
-  &:nth-child(2) .bar {
+  &:nth-child(2n) .bar {
     background-color: #FC8E00;
   }
 
-  &:nth-child(3) .bar {
+  &:nth-child(3n) .bar {
     background-color: map(colors, primary, base);
   }
 
-  &:nth-child(4) .bar {
+  &:nth-child(4n) .bar {
     background-color: #0f9d58;
   }
 
-  &:nth-child(5) .bar {
+  &:nth-child(5n) .bar {
     background-color: map(colors, productos, santander);
+  }
+
+  &:nth-child(6n) .bar {
+    background-color: map(colors, red, deLaPaz);
+  }
+
+  &:nth-child(7n) .bar {
+    background-color: map(colors, red, deLaMujer);
+  }
+
+  &:nth-child(8n) .bar {
+    background-color: #c00d0d;
+  }
+
+  &:nth-child(9n) .bar {
+    background-color: map(colors, red, rural);
+  }
+
+  &:hover {
+    .compact {
+      opacity: 1;
+      bottom: -1.5em;
+    }
   }
 }
 
@@ -63,4 +86,15 @@
   h4 {
     margin-bottom: 0.2em;
   }
+}
+
+.compact {
+  position: absolute;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  left: 1.5em;
+  transform-origin: left;
+  opacity: 0;
+  bottom: -3em;
+  transition: .4s;
 }
