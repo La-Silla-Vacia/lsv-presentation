@@ -55,20 +55,37 @@ export default class Slide extends Component {
     );
   }
 
+  getBackgroundImage() {
+    const { backgroundImage } = this.props;
+    return (
+      <div className={s.background} style={{ backgroundImage: `url(${backgroundImage})` }} />
+    )
+  }
+
   render(props, state) {
     const { hiddenTitle } = state;
     const { title, subtitle, image, content, className, backgroundVideo, backgroundImage } = props;
     const img = (image) ? this.getImage() : false;
     const video = (backgroundVideo) ? this.getVideo() : false;
+    const bgImage = (backgroundImage) ? this.getBackgroundImage() : false;
     const fixed = false;
 
     return (
-      <div className={cn(className, s.container, { [s.hasVideo]: video }, { [t.video]: video })}>
+      <div
+        className={cn(
+          className,
+          s.container,
+          { [t.background]: (video || bgImage) },
+          { [s.hasBackground]: (video || bgImage) }
+        )}>
+        {bgImage}
         {video}
         {img}
-        <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
-        <h3 className={cn(t.subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
-        <div className={t.content} dangerouslySetInnerHTML={{ __html: content }} />
+        <div className={s.content}>
+          <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
+          <h3 className={cn(t.subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
+          <div className={t.content} dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </div>
     )
   }

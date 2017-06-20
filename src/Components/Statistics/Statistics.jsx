@@ -27,7 +27,7 @@ export default class Statistics extends Component {
     const data = props.data.split("\n");
     const meters = data.map((meter) => {
       const item = meter.split(':');
-      console.log(item);
+      // console.log(item);
       return {
         name: item[0],
         amount: Number(item[1]),
