@@ -25,19 +25,21 @@ export default class Slides extends Component {
   }
 
   componentDidMount() {
-    if (window.location.pathname.indexOf('viewer') === -1) {
-      window.addEventListener('keydown', this.handleKeys);
-    } else {
-      console.log('No controls');
-    }
-
     if (window.location.hash) {
       this.setState({ current: window.location.hash.replace('#', '') });
     }
 
     if (io) {
       socket = io();
-      this.listenToSocket();
+    }
+
+    if (window.location.pathname.indexOf('viewer') === -1) {
+      window.addEventListener('keydown', this.handleKeys);
+    } else {
+      console.log('No controls');
+      if (io) {
+        this.listenToSocket();
+      }
     }
   }
 
