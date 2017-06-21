@@ -46,7 +46,8 @@ export default class Slide extends Component {
     const { backgroundVideo } = this.props;
     if (!this.state.rerender) this.rerender();
     return (
-      <video ref={(el) => this.video = el} onClick={this.handleVideo} className={s.video} autoPlay={false}
+      <video ref={(el) => this.video = el} onClick={this.handleVideo} className={s.video}
+             autoplay
              controls={true} loop={true}
              muted={true}>
         <source src={backgroundVideo} type="video/mp4" />
@@ -64,23 +65,25 @@ export default class Slide extends Component {
 
   render(props, state) {
     const { hiddenTitle } = state;
-    const { title, subtitle, image, content, className, backgroundVideo, backgroundImage } = props;
+    const { title, subtitle, image, content, className, backgroundVideo, backgroundImage, type } = props;
     const img = (image) ? this.getImage() : false;
     const video = (backgroundVideo) ? this.getVideo() : false;
     const bgImage = (backgroundImage) ? this.getBackgroundImage() : false;
     const fixed = false;
-
     return (
       <div
         className={cn(
           className,
           s.container,
-          { [t.background]: (video || bgImage) },
-          { [s.hasBackground]: (video || bgImage) }
+          { [t.background]: (video || bgImage || type === 'split') },
+          { [s.hasBackground]: (video || bgImage) },
+          { [s.split]: type === 'split' }
         )}>
         {bgImage}
         {video}
-        {img}
+        <div className={s.image}>
+          {img}
+        </div>
         <div className={s.content}>
           <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
           <h3 className={cn(t.subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
