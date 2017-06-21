@@ -51,7 +51,8 @@
   .content {
     margin-left: 2em;
 
-    ol {
+    ol,
+    ul {
       li {
         background-color: transparent;
         border: 1px solid #fff;
