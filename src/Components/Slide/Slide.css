@@ -92,6 +92,7 @@
       li {
         background: transparent;
         padding: 0;
+        border: 0;
 
         &::before {
           display: inline-block;
