@@ -31,6 +31,8 @@
   }
 
   .content {
+    margin-top: 2em;
+
     ol,
     ul {
       padding: 0;
@@ -42,7 +44,7 @@
 
       li {
         flex-basis: calc(33.3333% - .5em);
-        padding: 0.15em 1em 0.25em;
+        padding: 0.75em 1em;
         margin-bottom: 1em;
         background-color: map(colors, neutral, lightest);
 
@@ -52,6 +54,7 @@
           font-size: 2em;
           font-weight: bold;
           display: block;
+          line-height: 1;
         }
       }
     }
@@ -74,6 +77,6 @@
   .title,
   .subtitle {
     color: #fff;
-    //left: 3rem;
+  //left: 3rem;
   }
 }

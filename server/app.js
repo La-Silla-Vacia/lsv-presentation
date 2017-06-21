@@ -15,15 +15,18 @@ io.on('connection', function (socket) {
   socket.on('change', (num) => {
     io.emit('change', num);
   });
+  socket.on('full', (full) => {
+    io.emit('full', full);
+  });
 });
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.get('/script.js', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'script.js'));
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'script.js'));
 });
 
 module.exports = http;

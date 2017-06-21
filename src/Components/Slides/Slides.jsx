@@ -41,6 +41,9 @@ export default class Slides extends Component {
     socket.on('change', (current) => {
       this.setState({ current });
     });
+    socket.on('full', (full) => {
+      this.setState({ full });
+    });
   }
 
   getSlide() {
@@ -89,9 +92,12 @@ export default class Slides extends Component {
     } else if (code === 'Escape') {
       e.preventDefault();
       this.setState({ full: false });
+      if (socket) socket.emit('full', false);
     } else if (code === 'KeyF') {
       e.preventDefault();
-      this.setState({ full: !this.state.full });
+      const full = !this.state.full;
+      this.setState({ full });
+      if (socket) socket.emit('full', full);
     }
   }
 
