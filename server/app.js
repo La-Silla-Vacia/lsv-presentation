@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
+// Always return the main index.html, so react-router render the route in the client
+app.get('/viewer', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
+});
+
 app.get('/script.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'dist', 'script.js'));
 });

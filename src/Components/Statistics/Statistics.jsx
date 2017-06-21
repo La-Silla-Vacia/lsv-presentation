@@ -50,7 +50,7 @@ export default class Statistics extends Component {
     return meters.map((meter) => {
       const { name, amount, description } = meter;
       const percentage = amount * 100 / total;
-      const style = (compact) ? false : {bottom: `${percentage}%`};
+      const style = (compact) ? false : { bottom: `${percentage}%` };
       return (
         <div className={s.meter}>
           <div className={cn(s.description, { [s.compact]: compact })} style={style}>
@@ -64,12 +64,12 @@ export default class Statistics extends Component {
   }
 
   render(props, state) {
-    const { title, content, className } = props;
+    const { title, subtitle, content, className } = props;
     const meters = this.getMeters();
 
     return (
       <div className={cn(className, s.container)}>
-        <h2 className={cn(t.title, t.fixed)}>{title}</h2>
+        <h2 className={cn(t.title, t.fixed)}>{title} <span className={t.subtitle}> - {subtitle}</span></h2>
         <h3 className={t.subtitle}>{content}</h3>
         <div className={cn(g.row, s.meters)}>
           {meters}

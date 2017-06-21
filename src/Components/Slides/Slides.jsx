@@ -25,7 +25,11 @@ export default class Slides extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeys);
+    if (window.location.pathname.indexOf('viewer') === -1) {
+      window.addEventListener('keydown', this.handleKeys);
+    } else {
+      console.log('No controls');
+    }
 
     if (window.location.hash) {
       this.setState({ current: window.location.hash.replace('#', '') });
