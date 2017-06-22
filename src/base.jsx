@@ -24,6 +24,7 @@ export default class Base extends Component {
   }
 
   setData(rawData) {
+    console.log(rawData);
     const data = this.formatData(rawData);
     this.setState({ slides: data, loading: false });
   }

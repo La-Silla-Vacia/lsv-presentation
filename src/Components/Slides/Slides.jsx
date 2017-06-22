@@ -16,7 +16,7 @@ export default class Slides extends Component {
 
     this.state = {
       current: 0,
-      full: false,
+      full: true,
     };
 
     this.handleKeys = this.handleKeys.bind(this);
