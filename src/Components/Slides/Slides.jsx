@@ -29,7 +29,7 @@ export default class Slides extends Component {
       this.setState({ current: window.location.hash.replace('#', '') });
     }
 
-    if (io) {
+    if (typeof io !== "undefined") {
       socket = io();
     }
 
@@ -37,7 +37,7 @@ export default class Slides extends Component {
       window.addEventListener('keydown', this.handleKeys);
     } else {
       console.log('No controls');
-      if (io) {
+      if (typeof io !== "undefined") {
         this.listenToSocket();
       }
     }
