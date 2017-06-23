@@ -70,7 +70,7 @@ export default class Statistics extends Component {
     return (
       <div className={cn(className, s.container)}>
         <h2 className={cn(t.title, t.fixed)}>{title} <span className={t.subtitle}> - {subtitle}</span></h2>
-        <h3 className={t.subtitle}>{content}</h3>
+        <div dangerouslySetInnerHTML={{__html: content}} />
         <div className={cn(g.row, s.meters)}>
           {meters}
         </div>

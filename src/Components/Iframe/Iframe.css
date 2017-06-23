@@ -12,3 +12,10 @@
   width: 100%;
   height: calc(100% - 5.5em);
 }
+
+.compact {
+  max-width: 375px;
+  max-height: 667px;
+  margin: auto;
+  border: 1px solid map(colors, primary, base);
+}
