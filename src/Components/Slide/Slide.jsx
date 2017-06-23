@@ -81,12 +81,26 @@ export default class Slide extends Component {
         )}>
         {bgImage}
         {video}
-        <div className={s.image}>
-          {img}
+        <div className={s.head}>
+          {(img) ? (
+            <div className={s.image}>
+              {img}
+            </div>
+          ) : false}
+          {(type !== 'split') ? (
+            <div>
+              <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
+              <h3 className={cn(t.subtitle, s.head__subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
+            </div>
+          ) : false}
         </div>
         <div className={s.content}>
-          <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
-          <h3 className={cn(t.subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
+          {(type === 'split') ? (
+            <div>
+              <h2 className={cn(t.title, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{title}</h2>
+              <h3 className={cn(t.subtitle, { [t.hidden]: hiddenTitle }, { [t.fixed]: fixed })}>{subtitle}</h3>
+            </div>
+          ) : false}
           <div className={t.content} dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       </div>

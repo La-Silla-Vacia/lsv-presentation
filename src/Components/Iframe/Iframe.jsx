@@ -9,8 +9,7 @@ export default class Intro extends Component {
 
     return (
       <div className={cn(className, s.container)}>
-        <h2 className={cn(t.title, t.fixed)}>{title} <span className={t.subtitle}> - {subtitle}</span></h2>
-        {/*<h3 className={cn(t.subtitle, t.fixed)}>{subtitle}</h3>*/}
+        <h2 className={cn(t.title, t.fixed)}>{title} {(subtitle) ? (<span className={t.subtitle}> - {subtitle}</span>) : false}</h2>
         <iframe className={cn(s.frame, {[s.compact]: (content.indexOf('compact') !== -1)})} src={data} />
       </div>
     )

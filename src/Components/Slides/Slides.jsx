@@ -129,10 +129,10 @@ export default class Slides extends Component {
     return (
       <div className={cn(s.container, { [s.full]: full }, t.root, { [s.black]: black })}>
         {slide}
-        {/*<div>*/}
-        {/*<button className={s.button} onClick={this.handlePrev} />*/}
-        {/*<button className={s.button} onClick={this.handleNext} />*/}
-        {/*</div>*/}
+        <div>
+        <button className={s.button} onClick={this.handlePrev} />
+        <button className={s.button} onClick={this.handleNext} />
+        </div>
         <div className={s.indicator} style={{ width: `${percentage}%` }} />
       </div>
     )

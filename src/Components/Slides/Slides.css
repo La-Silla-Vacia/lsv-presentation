@@ -34,10 +34,11 @@
   height: 100%;
   left: 0;
   top: 0;
+  z-index: 5;
 
   &:last-child {
-    left: 20%;
-    width: 80%;
+    left: 35%;
+    width: 65%;
   }
 
   &:focus {
@@ -46,6 +47,8 @@
 
   &:active {
     border: 1px solid map(colors, primary, base);
+    border-left: 0;
+    border-right: 0;
   }
 }
 
@@ -58,6 +61,7 @@
   background-color: map(colors, primary, base);
   transition: width .2s;
   box-shadow: 0 -0.05em 0.5em rgba(0,0,0,.2);
+  z-index: 30;
 }
 
 .black {

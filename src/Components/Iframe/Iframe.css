@@ -11,6 +11,7 @@
   border: 0;
   width: 100%;
   height: calc(100% - 5.5em);
+  z-index: 20;
 }
 
 .compact {
